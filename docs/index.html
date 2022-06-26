@@ -9,45 +9,47 @@
 <ul>
 <li><input checked="" disabled="" type="checkbox"> API for user CRUD<ul>
 <li>Implements by<ul>
-<li>POST    /account/signin</li>
-<li>GET     /user/</li>
-<li>GET     /user/:id</li>
-<li>PATCH   /user/:id</li>
-<li>DELETE  /user/:id	Doc</li>
+<li>POST    /account/signin <a href="https://lellansin.github.io/test-backend/classes/controller_account.AccountController.html#signInPage">Doc</a></li>
+<li>GET     /user/ <a href="https://lellansin.github.io/test-backend/classes/controller_user.UserController.html#getList">Doc</a></li>
+<li>GET     /user/:id <a href="https://lellansin.github.io/test-backend/classes/controller_user.UserController.html#getById">Doc</a></li>
+<li>PATCH   /user/:id <a href="https://lellansin.github.io/test-backend/classes/controller_user.UserController.html#update">Doc</a></li>
+<li>DELETE  /user/:id	Doc <a href="https://lellansin.github.io/test-backend/classes/controller_user.UserController.html#delete">Doc</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><input checked="" disabled="" type="checkbox"> Logging strategy<ul>
 <li>Implements by<ul>
-<li>POST    /account/signin</li>
-<li>POST    /account/signup</li>
-<li>Guard middleware</li>
+<li>POST    /account/signin <a href="https://lellansin.github.io/test-backend/classes/controller_account.AccountController.html#signIn">Doc</a></li>
+<li>POST    /account/signup <a href="https://lellansin.github.io/test-backend/classes/controller_account.AccountController.html#signUp">Doc</a></li>
+<li>Guard middleware <a href="https://lellansin.github.io/test-backend/modules/middleware_loginRedirect.html">Doc</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><input checked="" disabled="" type="checkbox"> User auth<ul>
 <li>Implements by<ul>
-<li>GET	/auth/authorizate	Doc</li>
-<li>POST	/auth/authorizate	Doc</li>
-<li>POST	/auth/token	Doc</li>
-<li>PATCH	/auth/token	Doc</li>
+<li>GET    /auth/authorizate <a href="https://lellansin.github.io/test-backend/classes/controller_auth.AuthController.html#renderPage">Doc</a></li>
+<li>POST   /auth/authorizate <a href="https://lellansin.github.io/test-backend/classes/controller_auth.AuthController.html#authorizate">Doc</a></li>
+<li>POST   /auth/token       <a href="https://lellansin.github.io/test-backend/classes/controller_auth.AuthController.html#accessToken">Doc</a></li>
+<li>PATCH  /auth/token       <a href="https://lellansin.github.io/test-backend/classes/controller_auth.AuthController.html#refreshToken">Doc</a></li>
+<li>POST   /auth/client      <a href="https://lellansin.github.io/test-backend/classes/controller_auth.AuthController.html#createClient">Doc</a></li>
 </ul>
 </li>
+<li>Check <a href="https://lellansin.github.io/test-backend/modules/controller_auth.html#simple-authflow">AuthFlow</a> doc for summary.</li>
 </ul>
 </li>
 <li><input checked="" disabled="" type="checkbox"> to link to each other<ul>
 <li>Implements by<ul>
-<li>POST     /user/relation/follow</li>
-<li>DELETE   /user/relation/follow</li>
+<li>POST   /user/relation/follow <a href="https://lellansin.github.io/test-backend/classes/controller_user.UserController.html#follow">Doc</a></li>
+<li>DELETE /user/relation/follow <a href="https://lellansin.github.io/test-backend/classes/controller_user.UserController.html#unfollow">Doc</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><input checked="" disabled="" type="checkbox"> check nearby friends<ul>
 <li>Implements by<ul>
-<li>GET     /user/nearby</li>
+<li>GET /user/nearby <a href="https://lellansin.github.io/test-backend/classes/controller_user.UserController.html#getNearbyList">Doc</a></li>
 </ul>
 </li>
 </ul>
@@ -71,14 +73,15 @@
 <a href="#testing-approach" id="testing-approach" style="color: inherit; text-decoration: none;">
   <h2>Testing approach</h2>
 </a>
-<p>100% test coverage with e2e test (for auth testing);</p>
+<p>100% test coverage with e2e test (for auth testing):</p>
+<p><img src="https://github.com/Lellansin/test-backend/raw/master/asserts/unittest.gif" alt="unittest.gif"></p>
 <p><img src="https://github.com/Lellansin/test-backend/raw/master/asserts/unittest.gif" alt="unittest-gif"></p>
 
 <a href="#extensiblity" id="extensiblity" style="color: inherit; text-decoration: none;">
   <h2>Extensiblity</h2>
 </a>
-<p>For good extensiblity, we implements a simple dependency inject.</p>
-<p>For example, if we get a Auth Controller, it will build instance tree liek:</p>
+<p>For good extensiblity, implement a simple dependency inject.</p>
+<p>For example, if we get a Auth Controller, it will build instance tree like:</p>
 <pre><code><span class="hl-1">- </span><span class="hl-0">AuthController</span><br/><span class="hl-1">  - </span><span class="hl-0">AuthService</span><br/><span class="hl-1">    - </span><span class="hl-0">UserModel</span><br/><span class="hl-1">      - </span><span class="hl-2">MongoDB</span><span class="hl-1"> (</span><span class="hl-0">Singleton</span><span class="hl-1">)</span><br/><span class="hl-1">    - </span><span class="hl-0">TokenModel</span><br/><span class="hl-1">      - </span><span class="hl-2">MongoDB</span><span class="hl-1"> (</span><span class="hl-0">Singleton</span><span class="hl-1">)</span><br/><span class="hl-1">    - </span><span class="hl-0">ClientModel</span><br/><span class="hl-1">      - </span><span class="hl-2">MongoDB</span><span class="hl-1"> (</span><span class="hl-0">Singleton</span><span class="hl-1">)</span><br/><span class="hl-1">    - </span><span class="hl-0">CacheService</span><br/><span class="hl-1">      - </span><span class="hl-2">Redis</span><span class="hl-1"> (</span><span class="hl-0">Singleton</span><span class="hl-1">)</span><br/><span class="hl-1">  - </span><span class="hl-0">ViewService</span>
 </code></pre>
 
@@ -96,7 +99,7 @@ config file located <code>src/config/config.default</code>:</p>
 <p>We can config the options above to connect to exist DB, or using docker:</p>
 <pre><code><span class="hl-0">docker</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1"> -</span><span class="hl-0">p</span><span class="hl-1"> </span><span class="hl-9">27017</span><span class="hl-1">:</span><span class="hl-9">27017</span><span class="hl-1"> -</span><span class="hl-0">it</span><span class="hl-1"> </span><span class="hl-0">mongo</span><br/><span class="hl-0">docker</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1"> -</span><span class="hl-0">it</span><span class="hl-1"> -</span><span class="hl-0">p</span><span class="hl-1"> </span><span class="hl-9">6379</span><span class="hl-1">:</span><span class="hl-9">6379</span><span class="hl-1"> </span><span class="hl-0">redis</span>
 </code></pre>
-<p>If the MongoDB is good, we should create geographic index</p>
+<p>If the MongoDB is good, we should create geographic index first:</p>
 <pre><code class="language-shell"><span class="hl-1">$ mongo</span><br/><span class="hl-1">&gt; use test-backend </span><span class="hl-3"># database name configured in src/config/config.default</span><br/><span class="hl-1">&gt; db.user.createIndex({ location: </span><span class="hl-8">&quot;2d&quot;</span><span class="hl-1"> } )</span>
 </code></pre>
 
@@ -117,4 +120,31 @@ config file located <code>src/config/config.default</code>:</p>
 </a>
 <pre><code class="language-shell"><span class="hl-1">npm run test-thrid-party-app</span>
 </code></pre>
+
+<a href="#reading-guide" id="reading-guide" style="color: inherit; text-decoration: none;">
+  <h2>Reading Guide</h2>
+</a>
+<p>For document reading, recommend order:</p>
+<ul>
+<li><a href="https://lellansin.github.io/test-backend/modules/Application.html">Application Entry</a></li>
+<li><a href="https://lellansin.github.io/test-backend/modules/middleware.html">Middlewares</a></li>
+<li><a href="https://lellansin.github.io/test-backend/modules/controller.html">Controllers</a></li>
+</ul>
+<p>For code reading, recommend order:</p>
+<ul>
+<li><a href="https://github.com/Lellansin/test-backend/blob/master/src/util/container.ts#L199">@Provide</a> register class, and <a href="https://github.com/Lellansin/test-backend/blob/master/src/util/container.ts#L199">getInstanceByClass</a> new class.</li>
+<li><a href="">@Middleware</a> register middlewares, and <a href="https://github.com/Lellansin/test-backend/blob/master/src/util/web.ts#L62">loadMiddlewares</a>.</li>
+<li><a href="https://github.com/Lellansin/test-backend/blob/master/src/util/web.ts#L176">@Get</a> register router, and <a href="https://github.com/Lellansin/test-backend/blob/master/src/util/web.ts#L79">loadControllers</a>.</li>
+<li><a href="https://github.com/Lellansin/test-backend/blob/master/test/service.test.ts">service.test.ts</a> for business logic .</li>
+</ul>
+<p>For auth implement, recomend reading: </p>
+<ul>
+<li>Document: <a href="https://lellansin.github.io/test-backend/modules/controller_auth.html#simple-authflow">AuthFlow</a></li>
+<li>Code: <a href="https://github.com/Lellansin/test-backend/blob/master/src/controller/auth.ts">Auth APIs</a>, <a href="https://github.com/Lellansin/test-backend/blob/master/test/thridPartyApp.ts">3rd-party Test App</a> and <a href="https://github.com/Lellansin/test-backend/blob/master/test/api.test.ts#L345">e2e test</a></li>
+</ul>
+
+<a href="#last" id="last" style="color: inherit; text-decoration: none;">
+  <h2>Last</h2>
+</a>
+<p>Thank for reading, look forward to partnering together.</p>
 </div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Modules</a></li><li class=" tsd-kind-module"><a href="modules/Application.html">Application</a></li><li class=" tsd-kind-module"><a href="modules/config_constant.html">config/constant</a></li><li class=" tsd-kind-module"><a href="modules/controller.html">controller</a></li><li class=" tsd-kind-module"><a href="modules/controller_account.html">controller/account</a></li><li class=" tsd-kind-module"><a href="modules/controller_auth.html">controller/auth</a></li><li class=" tsd-kind-module"><a href="modules/controller_home.html">controller/home</a></li><li class=" tsd-kind-module"><a href="modules/controller_user.html">controller/user</a></li><li class=" tsd-kind-module"><a href="modules/db_mongo.html">db/mongo</a></li><li class=" tsd-kind-module"><a href="modules/db_redis.html">db/redis</a></li><li class=" tsd-kind-module"><a href="modules/entity_client.html">entity/client</a></li><li class=" tsd-kind-module"><a href="modules/entity_relation.html">entity/relation</a></li><li class=" tsd-kind-module"><a href="modules/entity_token.html">entity/token</a></li><li class=" tsd-kind-module"><a href="modules/entity_user.html">entity/user</a></li><li class=" tsd-kind-module"><a href="modules/interface.html">interface</a></li><li class=" tsd-kind-module"><a href="modules/middleware.html">middleware</a></li><li class=" tsd-kind-module"><a href="modules/middleware_bodyParser.html">middleware/body<wbr/>Parser</a></li><li class=" tsd-kind-module"><a href="modules/middleware_loginRedirect.html">middleware/login<wbr/>Redirect</a></li><li class=" tsd-kind-module"><a href="modules/middleware_onerror.html">middleware/onerror</a></li><li class=" tsd-kind-module"><a href="modules/middleware_session.html">middleware/session</a></li><li class=" tsd-kind-module"><a href="modules/middleware_stat.html">middleware/stat</a></li><li class=" tsd-kind-module"><a href="modules/model_client.html">model/client</a></li><li class=" tsd-kind-module"><a href="modules/model_relation.html">model/relation</a></li><li class=" tsd-kind-module"><a href="modules/model_token.html">model/token</a></li><li class=" tsd-kind-module"><a href="modules/model_user.html">model/user</a></li><li class=" tsd-kind-module"><a href="modules/service_account.html">service/account</a></li><li class=" tsd-kind-module"><a href="modules/service_auth.html">service/auth</a></li><li class=" tsd-kind-module"><a href="modules/service_cache.html">service/cache</a></li><li class=" tsd-kind-module"><a href="modules/service_relation.html">service/relation</a></li><li class=" tsd-kind-module"><a href="modules/service_user.html">service/user</a></li><li class=" tsd-kind-module"><a href="modules/service_view.html">service/view</a></li><li class=" tsd-kind-module"><a href="modules/util_container.html">util/container</a></li><li class=" tsd-kind-module"><a href="modules/util_crypto.html">util/crypto</a></li><li class=" tsd-kind-module"><a href="modules/util_utils.html">util/utils</a></li><li class=" tsd-kind-module"><a href="modules/util_web.html">util/web</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li><li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li><li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
