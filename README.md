@@ -58,6 +58,8 @@ Corresponding to MVC design pattern, we can see:
 
 100% test coverage with e2e test (for auth testing);
 
+![unittest-gif](https://github.com/Lellansin/test-backend/raw/master/asserts/unittest.gif)
+
 ## Extensiblity
 
 For good extensiblity, we implements a simple dependency inject.
@@ -70,6 +72,8 @@ For example, if we get a Auth Controller, it will build instance tree liek:
     - UserModel
       - MongoDB (Singleton)
     - TokenModel
+      - MongoDB (Singleton)
+    - ClientModel
       - MongoDB (Singleton)
     - CacheService
       - Redis (Singleton)
