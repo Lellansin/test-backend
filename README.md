@@ -60,8 +60,6 @@ Corresponding to MVC design pattern, we can see:
 
 100% test coverage with e2e test (for auth testing):
 
-![unittest.gif](https://github.com/Lellansin/test-backend/raw/master/asserts/unittest.gif)
-
 ![unittest-gif](https://github.com/Lellansin/test-backend/raw/master/asserts/unittest.gif)
 
 ## Extensiblity
